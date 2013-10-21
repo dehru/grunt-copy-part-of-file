@@ -66,10 +66,10 @@ Default value: `A STRING OR REGEX`
 
 A string or regexp value that is used to match part of the source file and start to copy.
 
-#### Example Source File
+#### Example Usage
 In this example I use the following config and source content to create the destination content
 
-Grunt Config
+#### Grunt Config
 ```js
 grunt.initConfig({
   copy_part_of_file: {
@@ -88,7 +88,7 @@ grunt.initConfig({
 })
 ```
 
-##Source File
+#### Source File ( referenced as test/fixtures/simple-source.html in config above )
 ```html
 <!DOCTYPE html>
 <html>
@@ -103,7 +103,7 @@ grunt.initConfig({
 </html>
 ```
 
-##Destination File
+#### Destination File ( referenced as test/fixtures/simple-destination.html in config above )
 ```html
 
 <!DOCTYPE html>
@@ -120,7 +120,7 @@ grunt.initConfig({
 
 ```
 
-##Final Destination File After Task Runs ( Not that anyone would do this...but it's an exmaple )
+##Final Destination File After Task Runs ( Not that anyone would do this...but two heads are better than one. )
 <!DOCTYPE html>
 <html>
 <head>
