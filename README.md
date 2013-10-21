@@ -24,17 +24,19 @@ In your project's Gruntfile, add a section named `copy-part-of-file` to the data
 
 ```js
 grunt.initConfig({
-  simple_replace_scripts: {
-      options: {
-          sourceFileStartPattern: '<!-- SIMPLE START -->',
-          sourceFileEndPattern: '<!-- SIMPLE END -->',
-          destinationFileStartPattern: '<!-- START -->',
-          destinationFileEndPattern: '<!-- END -->'
-      },
-      files: {
-          'test/fixtures/simple-destination.html': ['test/fixtures/simple-source.html']
+  copy_part_of_file: {
+      simple_replace_scripts: {
+          options: {
+              sourceFileStartPattern: '<!-- SIMPLE START -->',
+              sourceFileEndPattern: '<!-- SIMPLE END -->',
+              destinationFileStartPattern: '<!-- START -->',
+              destinationFileEndPattern: '<!-- END -->'
+          },
+          files: {
+              'test/fixtures/simple-destination.html': ['test/fixtures/simple-source.html']
+          }
       }
-  }
+  },
 })
 ```
 
@@ -64,24 +66,75 @@ Default value: `A STRING OR REGEX`
 
 A string or regexp value that is used to match part of the source file and start to copy.
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+#### Example Source File
+In this example I use the following config and source content to create the destination content
 
+Grunt Config
 ```js
 grunt.initConfig({
-  simple_replace_scripts: {
-      options: {
-          sourceFileStartPattern: '<!-- SIMPLE START -->',
-          sourceFileEndPattern: '<!-- SIMPLE END -->',
-          destinationFileStartPattern: '<!-- START -->',
-          destinationFileEndPattern: '<!-- END -->'
-      },
-      files: {
-          'test/fixtures/simple-destination.html': ['test/fixtures/simple-source.html']
-      }
-  }
+  copy_part_of_file: {
+        simple_replace_scripts: {
+            options: {
+                sourceFileStartPattern: '<!-- SIMPLE START -->',
+                sourceFileEndPattern: '<!-- SIMPLE END -->',
+                destinationFileStartPattern: '<!-- START -->',
+                destinationFileEndPattern: '<!-- END -->'
+            },
+            files: {
+                'test/fixtures/simple-destination.html': ['test/fixtures/simple-source.html']
+            }
+        }
+    },
 })
 ```
+
+##Source File
+```html
+<!DOCTYPE html>
+<html>
+<!-- SIMPLE START -->
+<head>
+    <title></title>
+</head>
+<!-- SIMPLE END -->
+<body>
+
+</body>
+</html>
+```
+
+##Destination File
+```html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<!-- START -->
+<!-- END -->
+
+</body>
+</html>
+
+```
+
+##Final Destination File After Task Runs ( Not that anyone would do this...but it's an exmaple )
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<!-- START -->
+<head>
+    <title></title>
+</head>
+<!-- END -->
+
+</body>
+</html>
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
