@@ -17,7 +17,7 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-copy-part-of-file');
 ```
 
-## The "manage_index_files" task
+## The "copy_part_of_file" task
 
 ### Overview
 In your project's Gruntfile, add a section named `copy-part-of-file` to the data object passed into `grunt.initConfig()`.
@@ -58,13 +58,13 @@ A string or regexp value that is used to match part of the source file and stop 
 Type: `String`
 Default value: `A STRING OR REGEX`
 
-A string or regexp value that is used to match part of the destination file and begin to copy into it.
+A string or regexp value that is used to match part of the destination file and begin to copy the source matched above below this spot.
 
 #### options.destinationFileEndPattern
 Type: `String`
 Default value: `A STRING OR REGEX`
 
-A string or regexp value that is used to match part of the source file and start to copy.
+A string or regexp value that is used to match part of the destination file and stop coping the source matched above at this line.
 
 #### Example Usage
 In this example I use the following config and source content to create the destination content
