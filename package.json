@@ -1,6 +1,6 @@
 {
-  "name": "grunt-manage-index-files",
-  "description": "This plugin helps us copy scripts fsection from 1 index file to another.  like index-harmony.html to index-harmony-e2e.html",
+  "name": "grunt-copy-part-of-file",
+  "description": "This plugin helps me copy a section from 1 file to another.  I use it with angularjs to keep my index.html and my index-e2e.html file in sync",
   "version": "0.1.0",
   "homepage": "",
   "author": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://ucas-gitlab.lss.emc.com/gui/harmony-ui"
+    "url": "https://github.com/dehru/grunt-copy-part-of-file.git"
   },
   "bugs": {
     "url": ""
