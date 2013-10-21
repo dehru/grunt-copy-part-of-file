@@ -110,7 +110,7 @@ module.exports = function(grunt) {
     /**
      * This task takes can help you keep 1 section of 1 file in sync with another section of another file.
      */
-  grunt.registerMultiTask('copy_part_of_file', 'This plugin helps us copy sections from 1 file and insert it into to another.  like index-harmony.html to index-harmony-e2e.html', function() {
+  grunt.registerMultiTask('copy-part-of-file', 'This plugin helps us copy sections from 1 file and insert it into to another.  like index-harmony.html to index-harmony-e2e.html', function() {
 
       //get filepaths as strings
       var indexFilePath = this.files[0].orig.src[0];

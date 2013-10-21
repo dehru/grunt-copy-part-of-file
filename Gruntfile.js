@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    copy_part_of_file: {
+    'copy-part-of-file': {
         replace_e2e_scripts: {
           options: {
               //this matches patterns that are already in place for usemin:prepare
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'copy_part_of_file', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'copy-part-of-file', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
