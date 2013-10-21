@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Harmony</title>
+    <link rel="stylesheet" href="styles/main.css">
+
+    <script src="scripts/config.js"></script>
+    <script type="text/javascript">
+
+        (function(window) {
+            window.emc = window.emc || {};
+            if (window.emc.constants) {
+                //These are set by the grunt build process.
+                window.emc.app = window.emc.constants._HARMONY_APP;
+                window.emc.device = window.emc.constants._BROWSER_DEVICE;
+                window.emc.platform = window.emc.constants._GENERIC_PLATFORM;
+                var isDevMode = window.location.href.indexOf('devmode') > 0;
+                window.emc.devmode = isDevMode;//this gets flipped to false as part of the build process.
+            }
+            window.WEB_SOCKET_SWF_LOCATION = 'components/socket.io-client/dist/WebSocketMain.swf';
+        })(window);
+
+    </script>
+</head>
+<body ng-app="harmonyApp" animate-init>
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser
+    today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better
+    experience this site.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<div id="appWrap" class="emc-flex-vertical-container">
+    <div header-bar="Harmony"></div>
+    <div id="centralPanel" class="emc-flex-horizontal-container" style="">
+        <div main-menu></div>
+        <div id="contentPanel" class="emc-flex-vertical-container boot-start" style="">
+            <div class="view emc-flex-vertical-container emc-flex-one" style="" ng-view></div>
+            <div sub-nav style=""></div>
+        </div>
+    </div>
+    <div class="modal hide fade" ng-include="'views/loginModal.html'"></div>
+    <div id="statusBar" class="boot-start" style="" ng-controller="SocketController" ng-include="'views/statusBar.html'"></div>
+</div>
+
+<!-- build:js scripts/harmony.js -->
+<script src="components/jquery/jquery.min.js"></script>
+<script src="components/angular/angular.js"></script>
+<script src="components/angular-resource/angular-resource.min.js"></script>
+<script src="components/angular-cookies/angular-cookies.min.js"></script>
+<script src="components/angular-sanitize/angular-sanitize.min.js"></script>
+
+<!-- misc ALPHABETICAL please -->
+<script src="scripts/i18next-config.js"></script>
+<!-- endbuild -->
+
+<!-- START SCRIPTS REPLACED HERE BY GRUNT -->
+<script src="components/jquery/jquery.min.js"></script>
+<script src="components/angular/angular.js"></script>
+<script src="components/angular-resource/angular-resource.min.js"></script>
+<script src="components/angular-cookies/angular-cookies.min.js"></script>
+<script src="components/angular-sanitize/angular-sanitize.min.js"></script>
+
+<!-- misc ALPHABETICAL please -->
+<script src="scripts/i18next-config.js"></script>
+<!-- END SCRIPTS REPLACED HERE BY GRUNT -->
+
+<!-- specific for e2e testing -->
+<script src="mocks/data/alerts.js"></script>
+<script src="mocks/data/adminTenants.js"></script>
+<script src="mocks/data/systemEvents.js"></script>
+<script src="mocks/services/jquery.atmosphere.mock.js"></script>
+<script src="e2e/harmony/appHarmonyE2e.js"></script>
+<script src="e2e/httpBackendMocks.js"></script>
+<script src="e2e/harmony/harmonyHttpBackendMocks.js"></script>
+
+
+</body>
+</html>
