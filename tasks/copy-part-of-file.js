@@ -1,6 +1,6 @@
 /*
  * grunt-manage-index-files
- * 
+ *
  *
  * Copyright (c) 2013 Dehru Cromer
  * Licensed under the MIT license.
@@ -112,9 +112,12 @@ module.exports = function(grunt) {
      */
   grunt.registerMultiTask('copy-part-of-file', 'This plugin helps us copy sections from 1 file and insert it into to another.  like index-harmony.html to index-harmony-e2e.html', function() {
 
+    for (var i = 0; i < this.files.length; i++) {
+      var file = this.files[i];
+
       //get filepaths as strings
-      var indexFilePath = this.files[0].orig.src[0];
-      var e2eFilePath = this.files[0].dest;
+      var indexFilePath = file.orig.src[0];
+      var e2eFilePath = file.dest;
       var sourceFileStartPattern = this.options().sourceFileStartPattern;
       var sourceFileEndPattern = this.options().sourceFileEndPattern;
       var destinationFileStartPattern = this.options().destinationFileStartPattern;
@@ -128,7 +131,7 @@ module.exports = function(grunt) {
           grunt.log.warn('E2E file ' + e2eFilePath + ' not found.');
       }
 
-      var indexFile = this.files[0].src[0];
+      var indexFile = file.src[0];
       var e2eFile = grunt.file.read(e2eFilePath);
 
       var scripts = getSourceScripts(grunt.file.read(indexFile), sourceFileStartPattern, sourceFileEndPattern);
@@ -140,6 +143,7 @@ module.exports = function(grunt) {
 
       // Print a success message.
       grunt.log.writeln('File "' + e2eFilePath + '" created.');
+    }
 
   });
 
