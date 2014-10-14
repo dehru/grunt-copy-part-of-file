@@ -1,7 +1,7 @@
 {
   "name": "grunt-copy-part-of-file",
   "description": "This plugin helps me copy a section from 1 file to another.  I use it with angularjs to keep my index.html and my index-e2e.html file in sync",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "",
   "author": {
     "name": "Dehru Cromer",
