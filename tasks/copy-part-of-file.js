@@ -98,7 +98,7 @@ var insertScriptsIntoDestinationFile = function(destinationContent, scriptsStr, 
     var matcher = getRegex(start.source + '[^]*' + end.source);
     //console.log("Matcher: " + matcher);
     //console.log("TEST: ", matcher.test(destinationContent));
-    var replacer = start.source + '\n' + scriptsStr + '\n' + end.source;
+    var replacer = startPattern + '\n' + scriptsStr + '\n' + endPattern;
     var replaced = destinationContent.replace(matcher, replacer);
     //console.log("Replaced: ", replaced);
     return replaced;

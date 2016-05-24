@@ -52,6 +52,28 @@ module.exports = function(grunt) {
             files: {
                 'test/fixtures/simple-destination.html': ['test/fixtures/simple-source.html']
             }
+        },
+        line_comment_replace_scripts: {
+            options: {
+                sourceFileStartPattern: '// Start Source',
+                sourceFileEndPattern: '// End Source',
+                destinationFileStartPattern: '// Start Destination',
+                destinationFileEndPattern: '// End Destination'
+            },
+            files: {
+                'test/fixtures/javascript-line-comment-destination.js': ['test/fixtures/javascript-line-comment-source.js']
+            }
+        },
+        block_comment_replace_scripts: {
+            options: {
+                sourceFileStartPattern: '/* Start Source */',
+                sourceFileEndPattern: '/* End Source */',
+                destinationFileStartPattern: '/* Start Destination */',
+                destinationFileEndPattern: '/* End Destination */'
+            },
+            files: {
+                'test/fixtures/javascript-block-comment-destination.js': ['test/fixtures/javascript-block-comment-source.js']
+            }
         }
     },
 

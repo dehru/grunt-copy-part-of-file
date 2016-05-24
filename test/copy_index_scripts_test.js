@@ -27,5 +27,25 @@ exports.copy = {
         test.equal(actual, expected, 'the destination file does not match what was expected');
 
         test.done();
+    },
+    line_comment_replace_scripts: function(test) {
+        test.expect(1);
+
+        var actual = grunt.file.read('test/fixtures/javascript-line-comment-destination.js');
+        var expected = grunt.file.read('test/expected/javascript-line-comment-expected.js');
+        //console.log("test1", actual, expected);
+        test.equal(actual, expected, 'the destination file does not match what was expected');
+
+        test.done();
+    },
+    block_comment_replace_scripts: function(test) {
+        test.expect(1);
+
+        var actual = grunt.file.read('test/fixtures/javascript-block-comment-destination.js');
+        var expected = grunt.file.read('test/expected/javascript-block-comment-expected.js');
+        //console.log("test1", actual, expected);
+        test.equal(actual, expected, 'the destination file does not match what was expected');
+
+        test.done();
     }
 };
