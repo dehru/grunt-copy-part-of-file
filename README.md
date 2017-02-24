@@ -17,14 +17,14 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-copy-part-of-file');
 ```
 
-## The "copy_part_of_file" task
+## The "copy-part-of-file" task
 
 ### Overview
 In your project's Gruntfile, add a section named `copy-part-of-file` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  copy_part_of_file: {
+  'copy-part-of-file': {
       simple_replace_scripts: {
           options: {
               sourceFileStartPattern: '<!-- SIMPLE START -->',
@@ -72,7 +72,7 @@ In this example I use the following config and source content to create the dest
 #### Grunt Config
 ```js
 grunt.initConfig({
-  copy_part_of_file: {
+  'copy-part-of-file': {
         simple_replace_scripts: {
             options: {
                 sourceFileStartPattern: '<!-- SIMPLE START -->',
