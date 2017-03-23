@@ -174,7 +174,7 @@ var addDestinationFilePatterns = function(destinationFilePath, destinationFileSt
   var postMatchedContent = lines.slice(matchedContentEnd, lines.length).join('\n');
 
   //If the translations for the specified locale already exist in its respective file
-  var newFileContent = fileContent + destinationFileStartPattern+ destinationFileEndPattern;
+  var newFileContent = fileContent + "\n" + destinationFileStartPattern+ destinationFileEndPattern;
   
   if(content) {
     newFileContent = preMatchedContent +"\n"+ destinationFileStartPattern+ "\n" + content + "\n"+ destinationFileEndPattern + "\n" + postMatchedContent;
