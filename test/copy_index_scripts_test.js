@@ -47,5 +47,18 @@ exports.copy = {
         test.equal(actual, expected, 'the destination file does not match what was expected');
 
         test.done();
-    }
+    },
+    copy_to_multiple_files_scripts: function(test) {
+        test.expect(2);
+
+        var Destination1Actual = grunt.file.read('test/fixtures/copy-to-multiple-files-destination1.js');
+        var Destination1Expected = grunt.file.read('test/expected/copy-to-multiple-files-destination1-expected.js').replace(/[\r]/g,"");
+        test.equal(Destination1Actual, Destination1Expected, 'the destination file 1 does not match what was expected');
+
+        var Destination2Actual = grunt.file.read('test/fixtures/copy-to-multiple-files-destination2.js');
+        var Destination2Expected = grunt.file.read('test/expected/copy-to-multiple-files-destination2-expected.js').replace(/[\r]/g,"");
+        test.equal(Destination2Actual, Destination2Expected, 'the destination file 2 does not match what was expected');
+
+       test.done();
+    },
 };

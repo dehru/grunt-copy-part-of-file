@@ -74,6 +74,25 @@ module.exports = function(grunt) {
             files: {
                 'test/fixtures/javascript-block-comment-destination.js': ['test/fixtures/javascript-block-comment-source.js']
             }
+        },
+        copy_to_multiple_files: {
+          options: {
+              //When having muliple destination files -
+              //As a postfix to sourceFileStartPattern and sourceFileEndPattern, the filepath will be added as a file marker
+              //Thus, in the source file one has to specify the start pattern following the file path of the destination file.
+              sourceFileStartPattern: '//start',
+              sourceFileEndPattern: '//end',
+              destinationFileStartPattern: '//start',
+              //If specified, the destinationFileStartPattern will be added before the locationDestinationStartPattern.
+              locationDestinationStartPattern: 'var testFunction',
+              destinationFileEndPattern: '//end',
+              //If specified, the destinationFileEndPattern will be added after the locationDestinationEndPattern.
+              locationDestinationEndPattern: '\\}\\;'
+            },
+            files: [{
+                src: 'test/fixtures/copy-to-multiple-files-source.js',
+                dest: ['test/fixtures/copy-to-multiple-files-destination1.js', 'test/fixtures/copy-to-multiple-files-destination2.js']
+            }]
         }
     },
 
