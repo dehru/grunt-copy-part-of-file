@@ -53,6 +53,18 @@ module.exports = function(grunt) {
                 'test/fixtures/simple-destination.html': ['test/fixtures/simple-source.html']
             }
         },
+        line_transformation_replace_scripts: {
+            options: {
+                sourceFileStartPattern: '// Start Source',
+                sourceFileEndPattern: '// End Source',
+                destinationFileStartPattern: '// Start Destination',
+                destinationFileEndPattern: '// End Destination',
+                lineTransformer: (line) => line.includes("foo") ? line.replace("foo", "baz") : line
+            },
+            files: {
+                'test/fixtures/simple-transform-destination.js': ['test/fixtures/simple-transform-source.js']
+            }
+        },
         line_comment_replace_scripts: {
             options: {
                 sourceFileStartPattern: '// Start Source',

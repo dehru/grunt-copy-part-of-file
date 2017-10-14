@@ -28,6 +28,16 @@ exports.copy = {
 
         test.done();
     },
+    line_transformation_replace_scripts: function(test) {
+        test.expect(1);
+
+        var actual = grunt.file.read('test/fixtures/simple-transform-destination.js');
+        var expected = grunt.file.read('test/expected/simple-transform-expected.js');
+
+        test.equal(actual, expected, 'the destination file does not match what was expected');
+
+        test.done();
+    },
     line_comment_replace_scripts: function(test) {
         test.expect(1);
 
