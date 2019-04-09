@@ -26,10 +26,11 @@ var getRegex = function(regexOrStr) {
  * @param content - [String] content of the source to be searched
  * @param startPattern - [String|RegExp] the start pattern to match in the source to start the copy
  * @param endPattern - [String|RegExp] the end pattern to match in the source to stop the copy
+ * @param transformer - [Function] a mapper function to transform each line  
  * @return String
  *
  */
-var getSourceScripts = function (content, startPattern, endPattern) {
+var getSourceScripts = function (content, startPattern, endPattern, transformer = (l) => l) {
 
     if (!content || !startPattern || !endPattern) {
         var message = 'You must provide a source file, source start pattern, and source end pattern.';
@@ -38,6 +39,9 @@ var getSourceScripts = function (content, startPattern, endPattern) {
     }
     startPattern = getRegex(startPattern);
     endPattern = getRegex(endPattern);
+
+    if(typeof transformer != "function")
+      transformer = (l) => l
 
     var lines = content.replace(/\r\n/g, '\n').split(/\n/),
         block = false,
@@ -63,7 +67,7 @@ var getSourceScripts = function (content, startPattern, endPattern) {
         if (block && scripts) {
 
             if (!first && !endbuild) {
-                scripts.push(l);
+                scripts.push(transformer(l));
             }
         }
 
@@ -72,7 +76,7 @@ var getSourceScripts = function (content, startPattern, endPattern) {
         }
     });
 
-    return scripts.join('\n');
+    return scripts.join('\r\n');
 };
 
 /**
@@ -98,7 +102,7 @@ var insertScriptsIntoDestinationFile = function(destinationContent, scriptsStr, 
     var matcher = getRegex(start.source + '[^]*' + end.source);
     //console.log("Matcher: " + matcher);
     //console.log("TEST: ", matcher.test(destinationContent));
-    var replacer = startPattern + '\n' + scriptsStr + '\n' + endPattern;
+    var replacer = startPattern + '\r\n' + scriptsStr + '\r\n' + endPattern;
     var replaced = destinationContent.replace(matcher, replacer);
     //console.log("Replaced: ", replaced);
     return replaced;
@@ -196,6 +200,7 @@ var copyTranslationsToDestinationFile = function(filepath, sourceFile, file, opt
   var sourceFileEndPattern = options.sourceFileEndPattern;
   var destinationFileStartPattern = options.destinationFileStartPattern;
   var destinationFileEndPattern = options.destinationFileEndPattern;
+  var lineTransformer = options.lineTransformer;
   var locationDestinationStartPattern = options.locationDestinationStartPattern ? getRegex(options.locationDestinationStartPattern) : null;
   var locationDestinationEndPattern = options.locationDestinationEndPattern ? getRegex(options.locationDestinationEndPattern) : null;
 
@@ -227,7 +232,7 @@ var copyTranslationsToDestinationFile = function(filepath, sourceFile, file, opt
     sourceEndPattern = sourceFileEndPattern + ' ' + filepath;
   }
 
-  var scripts = getSourceScripts(grunt.file.read(indexFilePath), sourceStartPattern, sourceEndPattern);
+  var scripts = getSourceScripts(grunt.file.read(indexFilePath), sourceStartPattern, sourceEndPattern, lineTransformer);
 
   var newE2eSource = insertScriptsIntoDestinationFile(e2eFile, scripts, destinationFileStartPattern, destinationFileEndPattern);
 
